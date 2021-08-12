@@ -155,7 +155,7 @@ const Binder = class extends ViewModelListener {
       // processor와 계약한 내용으로 알고리즘을 고친다.
       // 공통로직을 묶고 객체로 빼고, 객체를 형으로빼고, 형으로 계약된내용으로 알고리즘 수정
       processors.forEach(([processorKey, processor]) => {
-        console.error([processorKey, processor]);
+        // console.error([processorKey, processor]);
         Object.entries(vm[processorKey]).forEach(([k, v]) => {
           processor.process(viewmodel, el, k, v);
         });
