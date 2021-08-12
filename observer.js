@@ -163,7 +163,6 @@ const Binder = class extends ViewModelListener {
     });
   }
   watch(viewmodel) {
-    console.log("ddd", viewmodel);
     // 이렇게하면 viewmodel에서 this가 되어서 최초 viewmodel일때는 render를 걸어준다.
     viewmodel.addListener(this);
     this.render(viewmodel);
