@@ -16,6 +16,8 @@ const ViewmodelValue = class {
   }
 };
 
+const ViewModelSubjec;
+
 // subject이자 listener인 경우가 대부분
 const ViewModel = class extends ViewModelListener {
   // #을 붙여주면 private으로만들어주고 객체 내부에서만 접근 가능한 private 으로 만든다
@@ -110,20 +112,20 @@ const ViewModel = class extends ViewModelListener {
 // template method 가 process이다 알고리즘들을 step by step인 객체화 한것 binder의 strategy함수를 객체화 한다
 // 함수 ㅇㅔ _process이런식으로 기입하여 private이라는것을 명시
 
-const Processor = class {
-  cat;
-  constructor(cat) {
-    this.cat = cat;
-    Object.freeze(this);
-  }
-  process(vm, el, k, v) {
-    this._process(vm, el, k, v);
-  }
-  // 직접접근할 수 없도록 이렇게 만듬
-  _process(vm, el, k, v) {
-    throw "override";
-  }
-};
+// const Processor = class {
+//   cat;
+//   constructor(cat) {
+//     this.cat = cat;
+//     Object.freeze(this);
+//   }
+//   process(vm, el, k, v) {
+//     this._process(vm, el, k, v);
+//   }
+//   // 직접접근할 수 없도록 이렇게 만듬
+//   _process(vm, el, k, v) {
+//     throw "override";
+//   }
+// };
 
 const BinderItem = class {
   el;
