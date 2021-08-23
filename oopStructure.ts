@@ -1,57 +1,110 @@
-class Messenger {
-  constructor(job) {
-    this.job = job;
-  }
+interface Instruction {
+
 }
+interface JobList {
+jobId : string;
+instruction: Instruction[]
+}
+
+
 
 class MsgBox {
-    // 
-  #item = new Set();
-  static get(job) {
-    return new MsgBox(this.#item, job);
+  private jobType : string;
+  private jobList : JobList;
+  private observers : []
+  private job
+  constructor(jobType : string, job: JobList[] ) {
+ this.job = job
+    this.observers = []
   }
-  jobList = [];
-  constructor(job) {
-    job.forEach((element) => {
+ get(job) {
+    return new MsgBox(this.jobType, job);
+  }
+
+  addObservers (o) {
+    this.observers.push(o)
+  }
+
+  addMsgBox () {
+    this.job.forEach((element) => {
       this.jobList = this.jobList.push(element);
     });
-  }
-}
-
-class Scheduler {
-  constructor() {}
-  
-}
-
-class WorkerManager {
-  constructor(mb, job) {
-    this.worker = new Worker(mb, job);
-    this.communicator = new WorkerCommunicator(mb);
+    this.jobList.push(job)
+    this.notifyObservers()
   }
 
-  do() {
-    let currentWorker = this.worker;
+  notifyObservers () {
+    for(let o of this.observers) {
+      o.update(this)
+    } 
+  }
 
-    currentWorker = new Worker();
+}
+
+class Messenger {
+  private job
+  constructor(job) {
+    this.job = new MsgBox(job);
+  }
+  update() {
+
   }
 }
 
 class WorkerCommunicator {
   constructor() {}
+  // 읽어서 있는거면, 바로 워커에게 넘겨줌 
 }
-class Worker {
-  constructor() {}
-  process (job) {
-      this.plugIn = 
+
+
+
+const msgBox = new MsgBox()
+const scheduler = new Scheduler()
+const messenger = new Messenger()
+const workerCommunicator = new WorkerCommunicator()
+
+msgBox.addObservers(scheduler)
+msgBox.addObservers(messenger)
+msgBox.addObservers(workerCommunicator)
+
+msgBox.notifyObservers()
+
+class Scheduler {
+  constructor() {
+    const getMsgBox = 
+  }
+  
+  update(msgBox) {
+    const sessionId = "random"
+    const workerManager = new WorkerManager(sessionId, msgBox, job)
+    return workerManager
   }
 }
 
-class Processor {
-  constructor() {
-    this.pcb = pcb;
-    this.iceMaker = iceMaker;
-    this.payment = payment;
+class WorkerManager {
+  private processor 
+  private communicator 
+
+  constructor(sessionId, mb, job) {
+    this.processor = new Processor(mb, job);
+    this.communicator = new WorkerCommunicator(mb);
   }
+
+  do() {
+    let currentWorker = this.processor;
+    currentWorker = new Processor();
+  }
+}
+
+
+class Processor {
+
+  constructor(type, job) {
+
+  }
+  process (job) {
+    this.plugIn = 
+}
 }
 
 class PCB {
@@ -69,11 +122,24 @@ if(extract) {
 
 
 class Payment {
+  constructor(){
+
+  }
+
 
 
 }
 
 class IceMaker {
+  constructor(){
 
+  }
+
+}
+
+class Indicator {
+  constructor(){
+
+  }
 }
 
