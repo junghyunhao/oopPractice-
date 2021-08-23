@@ -1,5 +1,5 @@
 enum Modules {
-  PCB = "PCB";
+  PCB = "PCB", Payment = "Payment"
 
 
 }
